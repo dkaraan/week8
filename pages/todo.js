@@ -97,10 +97,10 @@ const Todo = () => {
 
             {todos.map((t, i) => {
                 return (
-                    <>
+                    <React.Fragment key={i}>
                         {i > 0 && <Divider />}
                         <Flex
-                            key={i}
+                            
                             w="100%"
                             p={5}
                             my={2}
@@ -114,7 +114,7 @@ const Todo = () => {
                             </Flex>
                             <IconButton onClick={() => deleteTodo(t)} icon={<DeleteIcon />} />
                         </Flex>
-                    </>
+                    </React.Fragment>
                 )
             })}
         </Flex>
@@ -124,29 +124,9 @@ const Todo = () => {
 export const getServerSideProps = withAuthUserTokenSSR({
     whenUnauthed: AuthAction.REDIRECT_TO_LOGIN,
 })(async ({ AuthUser, req }) => {
-    // Optionally, get other props.
-    // You can return anything you'd normally return from
-    // `getServerSideProps`, including redirects.
-    // https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering
-    const token = await AuthUser.getIdToken()
-    const endpoint = getAbsoluteURL('/api/example', req)
-    const response = await fetch(endpoint, {
-        method: 'GET',
-        headers: {
-            Authorization: token || 'unauthenticated',
-        },
-    })
-    const data = await response.json()
-    if (!response.ok) {
-        throw new Error(
-            `Data fetching failed with status ${response.status}: ${JSON.stringify(
-                data
-            )}`
-        )
-    }
+   
     return {
         props: {
-            favoriteColor: data.favoriteColor,
         },
     }
 })
