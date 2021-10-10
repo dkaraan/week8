@@ -32,6 +32,12 @@ const Demo = () => {
             If you remove `getServerSideProps` from this page, it will be static
             and load the authed user only on the client side.
           </p>
+          
+          {AuthUser.email ?
+          <a href="/todo" style={{fontWeight: "bold", textDecoration:  "underline", color: "green"}}>Click here to make a todos!</a>
+          : <br></br>
+          }
+ 
         </div>
         <DemoPageLinks />
       </div>
