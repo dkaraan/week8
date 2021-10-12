@@ -34,7 +34,18 @@ const Demo = () => {
           </p>
           
           {AuthUser.email ?
+          <p>
           <a href="/todo" style={{fontWeight: "bold", textDecoration:  "underline", color: "green"}}>Click here to make a todos!</a>
+          </p>
+
+          : <br></br>
+          }
+
+          {AuthUser.email ?
+          <p>
+          <a href="/event" style={{fontWeight: "bold", textDecoration:  "underline", color: "orange"}}>Click here to see fighting games I play!</a>
+          </p>
+
           : <br></br>
           }
  
